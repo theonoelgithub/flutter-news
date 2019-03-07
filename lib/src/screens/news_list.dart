@@ -1,13 +1,37 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
+import '../blocs/stories_provider.dart';
 
 class NewsList extends StatelessWidget {
   Widget build(context) {
+    final bloc = StoriesProvider.of(context);
+    
+    bloc.fetchTopIds(); // to be removed, only for tests
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Top News'),
       ),
-      body: Text('Show a list here'),
+      body: buildList(bloc),
+    );
+  }
+
+  Widget buildList(StoriesBloc bloc) {
+    return StreamBuilder(
+      stream: bloc.topIds,
+      builder: (context, AsyncSnapshot<List<int>> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator()
+          );
+        }
+
+        return ListView.builder(
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, int index) {
+            return Text('${snapshot.data[index]}');
+          },
+        );
+      },
     );
   }
 }
