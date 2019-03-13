@@ -17,10 +17,12 @@ class StoriesBloc {
   // Getters to sinks
   Function(int) get fetchItem => _itemsFetcher.sink.add; // exposing the sink to the outside world
 
+  // Constructor
   StoriesBloc() {
     _itemsFetcher.stream.transform(_itemsTransformer()).pipe(_itemsOutput);
   }
 
+  // Functions
   fetchTopIds() async {
     final ids = await _repository.fetchTopIds();
     _topIds.sink.add(ids);

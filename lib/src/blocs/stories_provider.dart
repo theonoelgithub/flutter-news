@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'stories_bloc.dart';
 export 'stories_bloc.dart';
 
+// StoriesProvider to get access to the bloc depending on the context
 class StoriesProvider extends InheritedWidget {
   final StoriesBloc bloc;
 
