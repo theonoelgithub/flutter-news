@@ -5,8 +5,6 @@ class Refresh extends StatelessWidget {
   final Widget child;
 
   Refresh({this.child});
-
-  
   
   Widget build(context) {
     final bloc = StoriesProvider.of(context);
