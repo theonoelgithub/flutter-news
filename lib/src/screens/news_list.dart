@@ -6,8 +6,6 @@ import '../widgets/refresh.dart';
 class NewsList extends StatelessWidget {
   Widget build(context) {
     final bloc = StoriesProvider.of(context);
-    
-    bloc.fetchTopIds(); // to be removed, only for tests
 
     return Scaffold(
       appBar: AppBar(
